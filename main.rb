@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Any live cell with fewer than two live neighbours dies, as if caused by under-population.
 # Any live cell with two or three live neighbours lives on to the next generation.
 # Any live cell with more than three live neighbours dies, as if by overcrowding.
@@ -134,16 +136,17 @@ class WorldTest < Test::Unit::TestCase
   end
 end
 
-def generate(world)
-  1000.times do
+def generate(world, population = 1000)
+  population.to_i.times do
     world.force_alive(rand(world.width), rand(world.height))
   end
 end
 
 width, height = HighLine::SystemExtensions.terminal_size
 width = width/2
+height = height - 1
 w = World.new(width, height)
-generate(w)
+generate(w, (width * height * 0.5))
 
 while true do
   sleep 0.05
