@@ -146,6 +146,6 @@ w = World.new(width, height)
 generate(w)
 
 while true do
-  sleep 0.01
+  sleep 0.05
   w.tick
 end
